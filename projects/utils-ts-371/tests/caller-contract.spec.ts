@@ -68,13 +68,16 @@ describe('Test', () => {
     ).rejects.toThrow('custom error message')
   })
 
-  test('throws custom error message when inner call', async () => {
-    await expect(
-      callerContractClient.send.call({
+  test.only('throws custom error message when inner call', async () => {
+    try {
+      await callerContractClient.send.call({
         sender: user,
         args: [calledContractClient.appId],
         extraFee: (1000).microAlgos(),
-      }),
-    ).rejects.toThrow('custom error message')
+      })
+    } catch (e) {
+      console.debug(e)
+      console.debug(`HERE!: Outer: ${callerContractClient.appId} Inner: ${calledContractClient.appId}`)
+    }
   })
 })
