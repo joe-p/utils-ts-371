@@ -1,0 +1,70 @@
+#pragma version 10
+#pragma typetrack false
+
+// algopy.arc4.ARC4Contract.approval_program() -> uint64:
+main:
+    intcblock 0 1
+    // smart_contracts/caller_contract/contract.py:10
+    // class CallerContract(ARC4Contract):
+    txn NumAppArgs
+    bz main_bare_routing@6
+    pushbytes 0x970f2f3a // method "call(application)void"
+    txna ApplicationArgs 0
+    match main_call_route@3
+
+main_after_if_else@10:
+    // smart_contracts/caller_contract/contract.py:10
+    // class CallerContract(ARC4Contract):
+    intc_0 // 0
+    return
+
+main_call_route@3:
+    // smart_contracts/caller_contract/contract.py:11
+    // @abimethod
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/caller_contract/contract.py:10
+    // class CallerContract(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txnas Applications
+    // smart_contracts/caller_contract/contract.py:11
+    // @abimethod
+    callsub call
+    intc_1 // 1
+    return
+
+main_bare_routing@6:
+    // smart_contracts/caller_contract/contract.py:10
+    // class CallerContract(ARC4Contract):
+    txn OnCompletion
+    bnz main_after_if_else@10
+    txn ApplicationID
+    !
+    assert // can only call when creating
+    intc_1 // 1
+    return
+
+
+// smart_contracts.caller_contract.contract.CallerContract.call(app: uint64) -> void:
+call:
+    // smart_contracts/caller_contract/contract.py:11-12
+    // @abimethod
+    // def call(self, app: Application) -> None:
+    proto 1 0
+    // smart_contracts/caller_contract/contract.py:13
+    // abi_call(CalledContract.fail, app_id=app.id, fee=0)
+    itxn_begin
+    frame_dig -1
+    itxn_field ApplicationID
+    pushbytes 0xd37345fa // method "fail()void"
+    itxn_field ApplicationArgs
+    pushint 6 // appl
+    itxn_field TypeEnum
+    intc_0 // 0
+    itxn_field Fee
+    itxn_submit
+    retsub

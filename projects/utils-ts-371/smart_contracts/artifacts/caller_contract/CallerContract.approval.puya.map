@@ -1,0 +1,275 @@
+{
+  "version": 3,
+  "sources": [
+    "../../caller_contract/contract.py"
+  ],
+  "mappings": ";;;;;AASA;;AAAA;;;AAAA;;;;;;AAAA;;;AAAA;;;;AAAA;;AACK;;AAAA;AAAA;AAAA;;AAAA;AADL;;;AAAA;AAAA;;AACK;;;AAAA;;AADL;;AAAA;;;;;;;;;AACA;;;AAEQ;;;;;AAAA;;;;;;;;AAAA;;;;AAAiD;;;AAAjD;",
+  "op_pc_offset": 0,
+  "pc_events": {
+    "1": {
+      "subroutine": "algopy.arc4.ARC4Contract.approval_program",
+      "params": {},
+      "block": "main",
+      "stack_in": [],
+      "op": "intcblock 0 1"
+    },
+    "5": {
+      "op": "txn NumAppArgs",
+      "defined_out": [
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "tmp%0#1"
+      ]
+    },
+    "7": {
+      "op": "bz main_bare_routing@6",
+      "stack_out": []
+    },
+    "10": {
+      "op": "pushbytes 0x970f2f3a // method \"call(application)void\"",
+      "defined_out": [
+        "Method(call(application)void)"
+      ],
+      "stack_out": [
+        "Method(call(application)void)"
+      ]
+    },
+    "16": {
+      "op": "txna ApplicationArgs 0",
+      "defined_out": [
+        "Method(call(application)void)",
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "Method(call(application)void)",
+        "tmp%2#0"
+      ]
+    },
+    "19": {
+      "op": "match main_call_route@3",
+      "stack_out": []
+    },
+    "23": {
+      "block": "main_after_if_else@10",
+      "stack_in": [],
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "24": {
+      "op": "return",
+      "stack_out": []
+    },
+    "25": {
+      "block": "main_call_route@3",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "27": {
+      "op": "!",
+      "defined_out": [
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "tmp%4#0"
+      ]
+    },
+    "28": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "29": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%5#0"
+      ],
+      "stack_out": [
+        "tmp%5#0"
+      ]
+    },
+    "31": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "32": {
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "reinterpret_bytes[1]%0#0"
+      ],
+      "stack_out": [
+        "reinterpret_bytes[1]%0#0"
+      ]
+    },
+    "35": {
+      "op": "btoi",
+      "defined_out": [
+        "tmp%7#0"
+      ],
+      "stack_out": [
+        "tmp%7#0"
+      ]
+    },
+    "36": {
+      "op": "txnas Applications",
+      "defined_out": [
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%8#0"
+      ]
+    },
+    "38": {
+      "callsub": "smart_contracts.caller_contract.contract.CallerContract.call",
+      "op": "callsub call",
+      "stack_out": []
+    },
+    "41": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "42": {
+      "op": "return",
+      "stack_out": []
+    },
+    "43": {
+      "block": "main_bare_routing@6",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%9#0"
+      ],
+      "stack_out": [
+        "tmp%9#0"
+      ]
+    },
+    "45": {
+      "op": "bnz main_after_if_else@10",
+      "stack_out": []
+    },
+    "48": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%10#0"
+      ],
+      "stack_out": [
+        "tmp%10#0"
+      ]
+    },
+    "50": {
+      "op": "!",
+      "defined_out": [
+        "tmp%11#0"
+      ],
+      "stack_out": [
+        "tmp%11#0"
+      ]
+    },
+    "51": {
+      "error": "can only call when creating",
+      "op": "assert // can only call when creating",
+      "stack_out": []
+    },
+    "52": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "53": {
+      "op": "return",
+      "stack_out": []
+    },
+    "54": {
+      "subroutine": "smart_contracts.caller_contract.contract.CallerContract.call",
+      "params": {
+        "app#0": "uint64"
+      },
+      "block": "call",
+      "stack_in": [],
+      "op": "proto 1 0"
+    },
+    "57": {
+      "op": "itxn_begin"
+    },
+    "58": {
+      "op": "frame_dig -1",
+      "defined_out": [
+        "app#0 (copy)"
+      ],
+      "stack_out": [
+        "app#0 (copy)"
+      ]
+    },
+    "60": {
+      "op": "itxn_field ApplicationID",
+      "stack_out": []
+    },
+    "62": {
+      "op": "pushbytes 0xd37345fa // method \"fail()void\"",
+      "defined_out": [
+        "Method(fail()void)"
+      ],
+      "stack_out": [
+        "Method(fail()void)"
+      ]
+    },
+    "68": {
+      "op": "itxn_field ApplicationArgs",
+      "stack_out": []
+    },
+    "70": {
+      "op": "pushint 6 // appl",
+      "defined_out": [
+        "appl"
+      ],
+      "stack_out": [
+        "appl"
+      ]
+    },
+    "72": {
+      "op": "itxn_field TypeEnum",
+      "stack_out": []
+    },
+    "74": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0"
+      ],
+      "stack_out": [
+        "0"
+      ]
+    },
+    "75": {
+      "op": "itxn_field Fee",
+      "stack_out": []
+    },
+    "77": {
+      "op": "itxn_submit"
+    },
+    "78": {
+      "retsub": true,
+      "op": "retsub"
+    }
+  }
+}
